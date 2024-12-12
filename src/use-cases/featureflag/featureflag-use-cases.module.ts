@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { DataServicesModule } from '../../services/data-services/data-services.module';
-import { AuthorFactoryService } from './author-factory.service';
-import { AuthorResolver } from './author-resolver';
-import { AuthorUseCases } from './author.use-case';
+import { AuthorFactoryService } from './featureflag-factory.service';
+import { AuthorResolver } from './featureflag-resolver';
+import { AuthorUseCases } from './featureflag.use-case';
 
 @Module({
   imports: [DataServicesModule],
