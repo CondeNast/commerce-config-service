@@ -1,39 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { Author } from '../../core/entities';
+import { FeatureFlag } from '../../core/entities';
 import { IDataServices, IDataServicesPostgres } from '../../core/abstracts';
 import { CreateAuthorDto, UpdateAuthorDto } from '../../core/dtos';
-import { AuthorFactoryService } from './featureflag-factory.service';
+import { FeatureFlagFactoryService } from './featureflag-factory.service';
 
 @Injectable()
 export class AuthorUseCases {
   //if you use postgres change name dataService *IDataServicesPostgres*
   constructor(
     private dataServices: IDataServicesPostgres,
-    private authorFactoryService: AuthorFactoryService,
+    private featureFlagFactoryService: FeatureFlagFactoryService,
   ) {}
 
-  getAllAuthors(): Promise<Author[]> {
+  getAllAuthors(): Promise<FeatureFlag[]> {
     return this.dataServices.authors.getAll();
   }
 
-  getAuthorById(id: any): Promise<Author> {
+  getAuthorById(id: any): Promise<FeatureFlag> {
     return this.dataServices.authors.get(id);
   }
 
-  createAuthor(createAuthorDto: CreateAuthorDto): Promise<Author> {
-    const author = this.authorFactoryService.createNewAuthor(createAuthorDto);
+  createAuthor(createAuthorDto: CreateAuthorDto): Promise<FeatureFlag> {
+    const author =
+      this.featureFlagFactoryService.createNewFeatureflag(createAuthorDto);
     return this.dataServices.authors.create(author);
   }
 
   updateAuthor(
     authorId: string | any,
     updateAuthorDto: UpdateAuthorDto,
-  ): Promise<Author> {
-    const author = this.authorFactoryService.updateAuthor(updateAuthorDto);
-    return this.dataServices.authors.update(authorId, author);
+  ): Promise<FeatureFlag> {
+    const featureflag =
+      this.featureFlagFactoryService.updateFeatureflag(updateAuthorDto);
+    return this.dataServices.authors.update(authorId, featureflag);
   }
 
-  deleteAuthor(id: any): Promise<Author[]> {
+  deleteFeatureFlag(id: any): Promise<FeatureFlag[]> {
     return this.dataServices.authors.delete(id);
   }
 }

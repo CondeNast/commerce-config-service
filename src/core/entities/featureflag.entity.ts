@@ -10,7 +10,7 @@ export interface FeatureFlag {
 }
 
 export interface Links {
-  self: string; // e.g., "/api/feature-flags/5859b4507bb5d280c51bf4e7"
+  self: string; // e.g., "/api/feature-flags/5859b4507bb5d280ic51bf4e7"
 }
 
 export interface FeatureFlagAttributes {

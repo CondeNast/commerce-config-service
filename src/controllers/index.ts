@@ -1,1 +1,1 @@
-export * from './author.controller';
+export * from './featureflag.controller';
