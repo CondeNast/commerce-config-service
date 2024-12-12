@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Author } from '../../core/entities';
 import { IDataServices, IDataServicesPostgres } from '../../core/abstracts';
 import { CreateAuthorDto, UpdateAuthorDto } from '../../core/dtos';
-import { AuthorFactoryService } from './author-factory.service';
+import { AuthorFactoryService } from './featureflag-factory.service';
 
 @Injectable()
 export class AuthorUseCases {

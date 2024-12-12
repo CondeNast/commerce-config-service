@@ -6,7 +6,7 @@ import {
   GetAuthorInput,
   UpdateAuthorInput,
 } from '../../core/inputs/author.input';
-import { AuthorUseCases } from './author.use-case';
+import { AuthorUseCases } from './featureflag.use-case';
 
 @Resolver()
 export class AuthorResolver {

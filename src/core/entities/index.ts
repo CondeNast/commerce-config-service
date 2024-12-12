@@ -1,1 +1,1 @@
-export * from './author.entity';
+export * from './featureflag.entity';

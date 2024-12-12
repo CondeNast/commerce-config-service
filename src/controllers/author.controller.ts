@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
 import { CreateAuthorDto, UpdateAuthorDto } from '../core/dtos';
-import { AuthorUseCases } from '../use-cases/author/author.use-case';
+import { AuthorUseCases } from '../use-cases/featureflag/featureflag.use-case';
 
 @Controller('api/author')
 export class AuthorController {
