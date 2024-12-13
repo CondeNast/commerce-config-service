@@ -54,7 +54,6 @@ export class FeatureFlagResponse {
   data: FeatureFlag[];
 }
 
-
 @InputType()
 export class CreateFeatureFlagInput {
   @Field()

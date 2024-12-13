@@ -6,7 +6,11 @@ import { FeatureFlagUseCases } from './featureflag.use-case';
 
 @Module({
   imports: [DataServicesModule],
-  providers: [FeatureFlagFactoryService, FeatureFlagUseCases, FeatureFlagResolver],
+  providers: [
+    FeatureFlagFactoryService,
+    FeatureFlagUseCases,
+    FeatureFlagResolver,
+  ],
   exports: [FeatureFlagFactoryService, FeatureFlagUseCases],
 })
 export class FeatureFlagUseCasesModule {}
