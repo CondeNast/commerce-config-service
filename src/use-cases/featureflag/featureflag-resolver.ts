@@ -1,46 +1,46 @@
 import { Query, Resolver, Mutation, Args } from '@nestjs/graphql';
 import { AuthorDTO } from 'src/core';
 import {
-  CreateAuthorInput,
-  DeleteAuthorInput,
-  GetAuthorInput,
-  UpdateAuthorInput,
-} from '../../core/inputs/author.input';
-import { AuthorUseCases } from './featureflag.use-case';
+  CreateFeatureFlagInput,
+  DeleteFeatureFlagInput,
+  GetFeatureFlagInput,
+  UpdateFeatureFlagInput,
+} from '../../core/inputs/featureflag.input';
+import { FeatureFlagUseCases } from './featureflag.use-case';
 
 @Resolver()
-export class AuthorResolver {
+export class FeatureFlagResolver {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor(private authorUseCases: AuthorUseCases) {}
+  constructor(private featureFlagUseCases: FeatureFlagUseCases) {}
 
   @Query(() => [AuthorDTO])
-  async users() {
-    const users = await this.authorUseCases.getAllAuthors();
+  async featureflags() {
+    const users = await this.featureFlagUseCases.getAllFeatureFlags();
     return users;
   }
 
   @Mutation(() => AuthorDTO)
-  async createAuthor(@Args('input') input: CreateAuthorInput) {
-    return this.authorUseCases.createAuthor(input);
+  async createFeatureFlag(@Args('input') input: CreateFeatureFlagInput) {
+    return this.featureFlagUseCases.createFeatureFlag(input);
   }
 
   @Query(() => AuthorDTO)
-  async getUser(@Args('input') input: GetAuthorInput) {
-    const users = await this.authorUseCases.getAuthorById(input);
+  async getFeatureFlag(@Args('input') input: GetFeatureFlagInput) {
+    const users = await this.featureFlagUseCases.getFeatureFlagById(input);
     return users;
   }
 
   @Mutation(() => AuthorDTO)
-  async updateAuthor(
-    @Args('id') input: UpdateAuthorInput,
-    @Args('data') data: CreateAuthorInput,
+  async updateFeatureFlag(
+    @Args('id') input: UpdateFeatureFlagInput,
+    @Args('data') data: CreateFeatureFlagInput,
   ) {
-    return this.authorUseCases.updateAuthor(input, data);
+    return this.featureFlagUseCases.updateFeatureFlag(input, data);
   }
 
   @Mutation(() => String)
-  async deleteAuthor(@Args('id') input: DeleteAuthorInput) {
-    await this.authorUseCases.deleteAuthor(input);
-    return 'Author remove';
+  async deleteFeatureFlag(@Args('id') input: DeleteFeatureFlagInput) {
+    await this.featureFlagUseCases.deleteFeatureFlag(input);
+    return 'FeatureFlag remove';
   }
 }

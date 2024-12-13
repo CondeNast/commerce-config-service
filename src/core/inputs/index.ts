@@ -1,1 +1,1 @@
-export * from './author.input';
+export * from './featureflag.input';

@@ -1,23 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { FeatureFlag } from '../../core/entities';
-import { FeatureFlagResponse } from '../../core/entities';
-import { CreateAuthorDto, UpdateAuthorDto } from '../../core/dtos';
+import { FeatureFlagIdDto, UpdateFeatureFlagDto } from '../../core/dtos';
 
 @Injectable()
 export class FeatureFlagFactoryService {
-  createNewFeatureflag(createFeatureflagDto: CreateFeatureflagDto) {
+  createNewFeatureflag(createFeatureflagDto: FeatureFlagIdDto) {
     const newFeatureflag = new FeatureFlag();
-    newAuthor.firstName = createAuthorDto.firstName;
-    newAuthor.lastName = createAuthorDto.lastName;
+    newFeatureflag.links = createFeatureflagDto.id;
+    newFeatureflag.type = createFeatureflagDto.lastName;
 
-    return newAuthor;
+    return newFeatureflag;
   }
 
-  updateFeatureflag(updateFeatureflagDto: UpdateFeatureflagDto) {
-    const newAuthor = new Author();
-    newAuthor.firstName = updateAuthorDto.firstName;
-    newAuthor.lastName = updateAuthorDto.lastName;
+  updateFeatureflag(updateFeatureflagDto: UpdateFeatureFlagDto) {
+    const newFeatureFlag = new FeatureFlag();
+    newFeatureFlag.firstName = updateFeatureflagDto.firstName;
+    newFeatureFlag.lastName = updateFeatureflagDto.lastName;
 
-    return newAuthor;
+    return newFeatureFlag;
   }
 }
