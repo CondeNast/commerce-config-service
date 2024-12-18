@@ -13,17 +13,17 @@ export class FeatureFlagUseCases {
   ) {}
 
   getAllFeatureFlags(): Promise<FeatureFlag[]> {
-    return this.dataServices.authors.getAll();
+    return this.dataServices.featureflags.getAll();
   }
 
   getFeatureFlagById(id: any): Promise<FeatureFlag> {
-    return this.dataServices.authors.get(id);
+    return this.dataServices.featureflags.get(id);
   }
 
   createFeatureFlag(createAuthorDto: FeatureFlagIdDto): Promise<FeatureFlag> {
     const author =
       this.featureFlagFactoryService.createNewFeatureflag(createAuthorDto);
-    return this.dataServices.authors.create(author);
+    return this.dataServices.featureflags.create(author);
   }
 
   updateFeatureFlag(
@@ -32,10 +32,10 @@ export class FeatureFlagUseCases {
   ): Promise<FeatureFlag> {
     const featureflag =
       this.featureFlagFactoryService.updateFeatureflag(updatefeatureFlagDto);
-    return this.dataServices.authors.update(featureFlagId, featureflag);
+    return this.dataServices.featureflags.update(featureFlagId, featureflag);
   }
 
   deleteFeatureFlag(id: any): Promise<FeatureFlag[]> {
-    return this.dataServices.authors.delete(id);
+    return this.dataServices.featureflags.delete(id);
   }
 }
