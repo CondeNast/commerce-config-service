@@ -3,12 +3,14 @@ import { ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigurationModule } from 'src/configuration/configuration.module';
 import { IDataServices } from '../../../core';
-import { Author, AuthorSchema } from './model';
+import { FeatureFlagEntity, FeatureFlagSchema } from './model';
 import { MongoDataServices } from './mongo-data-services.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Author.name, schema: AuthorSchema }]),
+    MongooseModule.forFeature([
+      { name: FeatureFlagEntity.name, schema: FeatureFlagSchema },
+    ]),
     MongooseModule.forRootAsync({
       imports: [ConfigurationModule],
       useFactory: async (configService: ConfigService) => ({

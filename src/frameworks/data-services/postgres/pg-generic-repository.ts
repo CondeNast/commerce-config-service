@@ -2,12 +2,12 @@ import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IGenericRepository } from 'src/core';
 import { Repository } from 'typeorm';
-import { UsersEntity } from './model';
+import { FeatureFlagEntity } from './model';
 
 export class PostgresGenericRepository<T> implements IGenericRepository<T> {
   constructor(
-    @InjectRepository(UsersEntity)
-    private usersRepository: Repository<UsersEntity>,
+    @InjectRepository(FeatureFlagEntity)
+    private usersRepository: Repository<FeatureFlagEntity>,
   ) {}
   async getAll() {
     return await this.usersRepository.find();

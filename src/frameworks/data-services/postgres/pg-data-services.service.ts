@@ -1,21 +1,28 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Author, IDataServicesPostgres } from 'src/core';
+import {
+  FeatureFlag,
+  IDataServicesPostgres,
+  IGenericRepository,
+} from 'src/core';
 import { Repository } from 'typeorm';
-import { UsersEntity } from './model';
+import { FeatureFlagEntity } from './model';
 import { PostgresGenericRepository } from './pg-generic-repository';
 
 @Injectable()
 export class PostgresDataServices
   implements IDataServicesPostgres, OnApplicationBootstrap
 {
-  authors: PostgresGenericRepository<Author>;
+  featureFlags: PostgresGenericRepository<FeatureFlag>;
   constructor(
-    @InjectRepository(UsersEntity)
-    private usersRepository: Repository<UsersEntity>,
+    @InjectRepository(FeatureFlagEntity)
+    private featureFlagRepository: Repository<FeatureFlagEntity>,
   ) {}
+  featureflags: IGenericRepository<FeatureFlag>;
 
   onApplicationBootstrap() {
-    this.authors = new PostgresGenericRepository<Author>(this.usersRepository);
+    this.featureFlags = new PostgresGenericRepository<FeatureFlag>(
+      this.featureFlagRepository,
+    );
   }
 }
