@@ -1,23 +1,26 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { IDataServices } from '../../../core';
+import { FeatureFlag, IDataServices, IGenericRepository } from '../../../core';
 import { MongoGenericRepository } from './mongo-generic-repository';
-import { Author, AuthorDocument } from './model';
+import { FeatureFlagEntity, FeatureFlagDocument } from './model';
 
 @Injectable()
 export class MongoDataServices
   implements IDataServices, OnApplicationBootstrap
 {
-  authors: MongoGenericRepository<Author>;
+  featureflag: MongoGenericRepository<FeatureFlagEntity>;
 
   constructor(
-    @InjectModel(Author.name)
-    private AuthorRepository: Model<AuthorDocument>,
+    @InjectModel(FeatureFlagEntity.name)
+    private featureFlagRepository: Model<FeatureFlagDocument>,
   ) {}
+  featureflags: IGenericRepository<FeatureFlag>;
 
   onApplicationBootstrap() {
-    this.authors = new MongoGenericRepository<Author>(this.AuthorRepository);
+    this.featureflag = new MongoGenericRepository<FeatureFlagEntity>(
+      this.featureFlagRepository,
+    );
     // this.books = new MongoGenericRepository<Book>(this.BookRepository, [
     //   'author',
     //   'genre',

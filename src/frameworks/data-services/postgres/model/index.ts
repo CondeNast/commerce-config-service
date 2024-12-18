@@ -1,1 +1,1 @@
-export * from './author.model';
+export * from './featureflag.model';

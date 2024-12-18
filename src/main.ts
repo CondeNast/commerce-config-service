@@ -8,8 +8,8 @@ import { Logger } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
-    .setTitle('API Backend Photovogue')
-    .setDescription('The  API photovogue backend')
+    .setTitle('API Backend Commerce Config Service')
+    .setDescription('The API Commerce Config Service backend')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

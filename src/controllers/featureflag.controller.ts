@@ -1,32 +1,32 @@
 import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
-import { CreateAuthorDto, UpdateAuthorDto } from '../core/dtos';
-import { AuthorUseCases } from '../use-cases/featureflag/featureflag.use-case';
+import { FeatureFlagIdDto, UpdateFeatureFlagDto } from '../core/dtos';
+import { FeatureFlagUseCases } from '../use-cases/featureflag/featureflag.use-case';
 
 @Controller('api/feature-flags')
 export class FeatureflagController {
-  constructor(private featureflagUseCases: AuthorUseCases) {}
+  constructor(private featureflagUseCases: FeatureFlagUseCases) {}
 
   @Get()
   async getAll() {
-    return this.featureflagUseCases.getAllAuthors();
+    return this.featureflagUseCases.getAllFeatureFlags();
   }
 
   @Get(':id')
   async getById(@Param('id') id: any) {
-    return this.featureflagUseCases.getAuthorById(id);
+    return this.featureflagUseCases.getFeatureFlagById(id);
   }
 
   @Post()
-  createFeatureflag(@Body() featureflagDto: CreateAuthorDto) {
-    return this.featureflagUseCases.createAuthor(featureflagDto);
+  createFeatureflag(@Body() featureflagDto: FeatureFlagIdDto) {
+    return this.featureflagUseCases.createFeatureFlag(featureflagDto);
   }
 
   @Put(':id')
   updateFeatureflag(
     @Param('id') featureflagId: string,
-    @Body() updatefeatureflagDto: UpdateAuthorDto,
+    @Body() updatefeatureflagDto: UpdateFeatureFlagDto,
   ) {
-    return this.featureflagUseCases.updateAuthor(
+    return this.featureflagUseCases.updateFeatureFlag(
       featureflagId,
       updatefeatureflagDto,
     );
